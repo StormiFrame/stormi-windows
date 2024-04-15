@@ -84,7 +84,7 @@ for %%i in (*.proto) do (
                             for /f "tokens=* delims= " %%a in ("!line!") do set "line=%%a"
                             for /f "tokens=1 delims=(" %%a in ("!line!") do (
                                 set "result=%%a"
-                                echo func ^(s *!filename!Impl^)!result!^(ctx context.Context, req *!filename!.!filename!Request^) ^(*!filename!.!filename!Response, error^) ^{
+                                echo func ^(impl *!filename!Impl^)!result!^(ctx context.Context, req *!filename!.!filename!Request^) ^(*!filename!.!filename!Response, error^) ^{
                                                 echo    return nil, status.Errorf^(codes.Unimplemented, "method !filename!Impl not Implemented"^)
                                                 echo ^}
                             )
