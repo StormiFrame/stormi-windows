@@ -54,12 +54,22 @@ func GetRedisClient() *redis.Client {
 }
 
 func init() {
+
 	// 获取当前工作目录
 	wd, _ := os.Getwd()
 
 	// 寻找包含 go.mod 文件的目录
 	modDir := findModDir(wd)
 	yamlFile, err := os.ReadFile(modDir + "/app.yaml")
+
+	// 获取当前进程的 PID
+	pid := os.Getpid()
+
+	// 将 PID 转换为字符串
+	pidStr := strconv.Itoa(pid)
+
+	// 写入 PID 到文件中
+	os.WriteFile(modDir+"/processid", []byte(pidStr), 0644)
 
 	if err != nil {
 		log.Fatalf("failed to read YAML file: %v", err)

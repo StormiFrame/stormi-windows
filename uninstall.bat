@@ -1,3 +1,3 @@
 @echo off
-
+echo uninstalling ......
 setx PATH "%PATH:;%CD%\bin=;%" >nul

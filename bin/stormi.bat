@@ -13,7 +13,7 @@ if "%1"=="version" (
 )
 
 if "%1"=="init" (
-    copy "%scriptDir%\app.yaml" "%CD%"  > nul
+    if not exist app.yaml copy "%scriptDir%\app.yaml" "%CD%"  > nul
     if not exist appserverset mkdir appserverset
     exit
 )
@@ -75,6 +75,12 @@ if "%1"=="gen" (
 
 
 if "%1"=="run" (
+    if exist "appserverset" (
+        if exist "app.yaml" (
+            call "%scriptDir%\stormi-runall.bat" 
+            exit
+        )
+    )
     for %%A in ("%cd%") do set "dir_name=%%~nxA"
     if "!dir_name!" == "protos" (
         go run .\RegisterAndStart\RegisterAndStart.go
