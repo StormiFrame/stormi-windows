@@ -1,0 +1,4 @@
+stormi:
+  redis:
+    url: 192.168.37.131:6379
+    password:

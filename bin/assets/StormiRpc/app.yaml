@@ -1,0 +1,16 @@
+runtime: go122
+api_version: go1
+
+handlers:
+- url: /.*
+  script: _go_app
+
+
+stormi:
+  redis:
+    url: 192.168.37.131:6379
+    password:
+  server:
+    name: StormiService
+    port: 9103
+    weight: 1
