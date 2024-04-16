@@ -8,7 +8,10 @@ set "scriptDir=%~dp0"
 call "%scriptDir%\stormi-checkcommand.bat" %1
 
 if "%1"=="version" (
-    echo stormi-windows-1.1.0
+    echo stormi-windows-1.3.1
+    protoc --version
+    protoc-gen-go --version
+    protoc-gen-go-grpc --version
     exit
 )
 
@@ -71,7 +74,15 @@ if "%1"=="gen" (
     exit
 )
 
-
+if "%1"=="run-" (
+    if exist "appserverset" (
+        if exist "app.yaml" (
+            call "%scriptDir%\stormi-killall.bat" 
+            call "%scriptDir%\stormi-runallbackground.bat" 
+            exit
+        )
+    )
+)
 
 
 if "%1"=="run" (

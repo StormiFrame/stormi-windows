@@ -41,4 +41,4 @@ for %%i in (*.proto) do (
 
 
 
-call %~dp0\stormi-serversetinit.bat %CD%
+call %~dp0\stormi-initserverset.bat %CD%

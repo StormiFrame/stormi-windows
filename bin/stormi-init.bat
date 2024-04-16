@@ -24,4 +24,4 @@ if "!flag!"=="0" exit
 endlocal
 
 
-call %~dp0\stormi-serversetinit.bat %CD%\%1\server\rpcProtos
+call %~dp0\stormi-initserverset.bat %CD%\%1\server\rpcProtos
