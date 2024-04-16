@@ -19,12 +19,14 @@ for /d %%A in (*) do (
     cd ..
 )
 
-timeout /t 5 > nul
 
 :loop
-set /p userInput=" 'x' to terminate all servers: "
+set /p userInput="'x' to terminate all servers; '-' to run in the background: "
 if "%userInput%"=="x" (
     stormi-killall
+    exit
+)
+if "%userInput%"=="-" (
     exit
 )
 goto loop

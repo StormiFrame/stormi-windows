@@ -14,9 +14,10 @@ for /d %%A in (*) do (
     if exist "processid" (
         rem 读取 processid 文件中的 PID
         set /p pid=<processid
-        echo !pid!
-        rem 终止进程
-        taskkill /F /PID !pid!
+        tasklist /FI "PID eq !pid!" | findstr /C:"!pid!" > nul
+        if %ERRORLEVEL% EQU 0 (
+            taskkill /F /PID !pid!
+        )
     )
 
     rem 返回脚本执行前的位置

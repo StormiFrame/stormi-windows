@@ -77,6 +77,7 @@ if "%1"=="gen" (
 if "%1"=="run" (
     if exist "appserverset" (
         if exist "app.yaml" (
+            call "%scriptDir%\stormi-killall.bat" 
             call "%scriptDir%\stormi-runall.bat" 
             exit
         )
@@ -110,6 +111,17 @@ if "%1"=="run" (
     exit
 )
 
+
+if "%1" == "x" (
+    if exist "appserverset" (
+        if exist "app.yaml" (
+            call "%scriptDir%\stormi-killall.bat" 
+            exit
+        )
+    )
+    echo currend_dir is not working_dir
+    exit
+)
 
 endlocal
 
